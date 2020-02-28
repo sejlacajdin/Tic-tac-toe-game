@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+label,
+input,
+button {
+  font-family: "Titillium Web";
+}
+
+body {
+  background: #eee;
+}
+
+#root {
+  width: 300px;
+  background: white;
+  padding: 50px 40px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 10%;
+  /* nije preporučeno */
+  border-radius: 10px;
+}
+
+.game,
+.gameBoard {
+  width: fit-content;
+}
+
+.gameRow {
+  display: flex;
+}
+
+.game h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.square {
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgb(223, 222, 222);
+  background-color: rgb(248, 248, 248);
+  margin: 5px;
+  outline: none;
+  font-size: 45px;
+  font-weight: bold;
+  color: rgb(187, 187, 187);
+}
+.square:hover {
+  background-color: #dedfde;
+  box-shadow: 0 12px 10px 0 rgba(184, 184, 184, 0.1),
+    0 17px 50px 0 rgba(199, 198, 198, 0.1);
+  cursor: pointer;
+}
+
+.game_info {
+  text-align: center;
+  margin-top: 2px;
+  font-weight: normal;
+  font-size: 25px;
+  font-family: "Titillium Web";
+}
+
+.reset_button {
+  margin-top: 15px;
+  background: white;
+  outline: none;
+  background: #333;
+  color: white;
+  border: 0;
+  padding: 10px 20px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+}
