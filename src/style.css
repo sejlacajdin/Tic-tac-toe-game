@@ -28,7 +28,7 @@ body {
 }
 
 .game,
-.gameBoard, 
+.gameBoard,
 .leaderBoard,
 .gameContent {
   width: fit-content;
@@ -83,12 +83,12 @@ body {
 
 /******Lider board********/
 
-.leaderBoard{
-  margin-left:40px;
+.leaderBoard {
+  margin-left: 40px;
   font-family: "Titillium Web";
 }
 
-.leaderboard__heading{
+.leaderboard__heading {
   background: white;
   outline: none;
   background: #333;
@@ -99,17 +99,18 @@ body {
   border-radius: 5px;
 }
 
-.gameContent{
+.gameContent {
   display: flex;
 }
-table{
-  width:100%;
+table {
+  width: 100%;
   border-collapse: collapse;
 }
-th,td{
-  width:50%;
-  border:2px solid rgb(223, 222, 222);
-  padding:5px;
+th,
+td {
+  width: 50%;
+  border: 2px solid rgb(223, 222, 222);
+  padding: 5px;
   font-family: "Titillium Web";
   text-align: center;
 }

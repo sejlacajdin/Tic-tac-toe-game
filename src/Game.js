@@ -1,52 +1,52 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import Square from "./Square";
 import Reset from "./Reset";
-import Swal from 'sweetalert2';
-import LiderBoard from './LiderBoard';
-
-
+import Swal from "sweetalert2";
+import LiderBoard from "./LiderBoard";
 
 export default function Game() {
   const [square, setSquare] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
-  const [players,setPlayers]= useState({
-    player1:{
-      name:'',
-      symbol:'X',
-      points:0
+  const [players, setPlayers] = useState({
+    player1: {
+      name: "",
+      symbol: "X",
+      points: 0
     },
-    player2:{
-      name:'',
-      symbol:'O',
-      points:0
+    player2: {
+      name: "",
+      symbol: "O",
+      points: 0
     }
   });
 
   useEffect(() => {
     Swal.fire({
-     title: 'Insert player names',
-     html:
-       '<input id="swal-input1" class="swal2-input">' +
-       '<input id="swal-input2" class="swal2-input">',
-     focusConfirm: false,
+      title: "Insert player names",
+      html:
+        '<input id="swal-input1" class="swal2-input">' +
+        '<input id="swal-input2" class="swal2-input">',
+      focusConfirm: false,
       preConfirm: () => {
-       return [
-         document.getElementById('swal-input1').value,
-         document.getElementById('swal-input2').value
-       ]
-     }
-   }).then(res=>{
-     setPlayers({player1:{name:res.value[0], symbol:'X',points:0}, player2:{name:res.value[1], symbol:'O',points:0}});
-   });
- }, []);
-  
+        return [
+          document.getElementById("swal-input1").value,
+          document.getElementById("swal-input2").value
+        ];
+      }
+    }).then(res => {
+      setPlayers({
+        player1: { name: res.value[0], symbol: "X", points: 0 },
+        player2: { name: res.value[1], symbol: "O", points: 0 }
+      });
+    });
+  }, []);
+
   const nextSymbol = isXNext ? "X" : "O";
   const winner = calculateWiner(square);
 
-
   function getStatus() {
     if (winner) {
-      getResult(players,winner);
+      getResult(players, winner);
       return "Winner " + winner + "!";
     } else if (isBoardFull(square)) {
       return "Game is end!";
@@ -83,39 +83,35 @@ export default function Game() {
     );
   }
 
-  function createLiderBoard(){
-    if(players.player1.name!='' || players.player2.name!=''){
-      return    <LiderBoard player1={players.player1} player2={players.player2}/>;
+  function createLiderBoard() {
+    if (players.player1.name != "" || players.player2.name != "") {
+      return <LiderBoard player1={players.player1} player2={players.player2} />;
     }
-    
-  };
+  }
 
   return (
     <div className="game">
       <h1>Game</h1>
       <div className="gameContent">
-      <div className="gameBoard">
-        <div className="gameRow">
-          {createSquare(0)}
-          {createSquare(1)}
-          {createSquare(2)}
+        <div className="gameBoard">
+          <div className="gameRow">
+            {createSquare(0)}
+            {createSquare(1)}
+            {createSquare(2)}
+          </div>
+          <div className="gameRow">
+            {createSquare(3)}
+            {createSquare(4)}
+            {createSquare(5)}
+          </div>
+          <div className="gameRow">
+            {createSquare(6)}
+            {createSquare(7)}
+            {createSquare(8)}
+          </div>
         </div>
-        <div className="gameRow">
-          {createSquare(3)}
-          {createSquare(4)}
-          {createSquare(5)}
-        </div>
-        <div className="gameRow">
-          {createSquare(6)}
-          {createSquare(7)}
-          {createSquare(8)}
-        </div> 
-      </div>
-        
-      <div className="leaderBoard">
-      { createLiderBoard()}  
-        </div>
-        
+
+        <div className="leaderBoard">{createLiderBoard()}</div>
       </div>
       <div className="game_info">{getStatus()}</div>
       <div>{createResetButton()}</div>
@@ -150,12 +146,10 @@ function isBoardFull(squares) {
   return true;
 }
 
-function getResult(players, winner){
-  if(players.player1.simbol==winner){
-    players.player1.points+=1;
-  }else{
-    players.player2.points+=1;
-
+function getResult(players, winner) {
+  if (players.player1.simbol == winner) {
+    players.player1.points += 1;
+  } else {
+    players.player2.points += 1;
   }
 }
-
