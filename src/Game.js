@@ -3,6 +3,7 @@ import Square from "./Square";
 import Reset from "./Reset";
 import Swal from "sweetalert2";
 import LiderBoard from "./LiderBoard";
+import ReloadButton from './ReloadButton'
 
 export default function Game() {
   const [square, setSquare] = useState(Array(9).fill(null));
@@ -19,33 +20,36 @@ export default function Game() {
       points: 0
     }
   });
-
   useEffect(() => {
-    Swal.fire({
-      title: "Insert player names",
-      html:
-        '<input id="swal-input1" class="swal2-input">' +
-        '<input id="swal-input2" class="swal2-input">',
-      allowOutsideClick:false,
-      focusConfirm: false,
-      preConfirm: () => {
-        let player_1 = Swal.getPopup().querySelector('#swal-input1').value;
-        let player_2 = Swal.getPopup().querySelector('#swal-input2').value;
-        if (player_1 === '' || player_2 === '') {
-          Swal.showValidationMessage(`Player names are missing!`)
-        }
-        return [
-          document.getElementById("swal-input1").value,
-          document.getElementById("swal-input2").value
-        ];
-      },
-    }).then(res => {
-      setPlayers({
-        player1: { name: res.value[0], symbol: "X", points: 0 },
-        player2: { name: res.value[1], symbol: "O", points: 0 }
-      });
-    });
+  showPopUpWindow(setPlayers);
   }, []);
+
+  // useEffect(() => {
+  //   Swal.fire({
+  //     title: "Insert player names",
+  //     html:
+  //       '<input id="swal-input1" class="swal2-input">' +
+  //       '<input id="swal-input2" class="swal2-input">',
+  //     allowOutsideClick:false,
+  //     focusConfirm: false,
+  //     preConfirm: () => {
+  //       let player_1 = Swal.getPopup().querySelector('#swal-input1').value;
+  //       let player_2 = Swal.getPopup().querySelector('#swal-input2').value;
+  //       if (player_1 === '' || player_2 === '') {
+  //         Swal.showValidationMessage(`Player names are missing!`)
+  //       }
+  //       return [
+  //         document.getElementById("swal-input1").value,
+  //         document.getElementById("swal-input2").value
+  //       ];
+  //     },
+  //   }).then(res => {
+  //     setPlayers({
+  //       player1: { name: res.value[0], symbol: "X", points: 0 },
+  //       player2: { name: res.value[1], symbol: "O", points: 0 }
+  //     });
+  //   });
+  // }, []);
 
   const nextSymbol = isXNext ? "X" : "O";
   const winner = calculateWiner(square);
@@ -95,6 +99,15 @@ export default function Game() {
     }
   }
 
+  function createReloadButtton(){
+    return <ReloadButton
+            onClick={()=>{
+              setSquare(Array(9).fill(null));
+              setIsXNext(true);
+                showPopUpWindow(setPlayers);
+             }}
+          />
+  }
   return (
     <div className="game">
       <h1>Game</h1>
@@ -121,6 +134,7 @@ export default function Game() {
       </div>
       <div className="game_info">{getStatus()}</div>
       <div>{createResetButton()}</div>
+      <div>{createReloadButtton()}</div>
     </div>
   );
 }
@@ -145,17 +159,44 @@ function calculateWiner(squares) {
   return null;
 }
 
-function isBoardFull(squares) {
+const isBoardFull= squares=>{
   for (let square of squares) {
     if (square == null) return false;
   }
   return true;
 }
 
-function getResult(players, winner) {
+ const getResult=(players, winner)=> {
   if (players.player1.symbol === winner) {
     players.player1.points += 1;
   } else {
     players.player2.points += 1;
   }
+}
+
+function showPopUpWindow(setPlayers){
+    Swal.fire({
+      title: "Insert player names",
+      html:
+        '<input id="swal-input1" class="swal2-input">' +
+        '<input id="swal-input2" class="swal2-input">',
+      allowOutsideClick:false,
+      focusConfirm: false,
+      preConfirm: () => {
+        let player_1 = Swal.getPopup().querySelector('#swal-input1').value;
+        let player_2 = Swal.getPopup().querySelector('#swal-input2').value;
+        if (player_1 === '' || player_2 === '') {
+          Swal.showValidationMessage(`Player names are missing!`)
+        }
+        return [
+          document.getElementById("swal-input1").value,
+          document.getElementById("swal-input2").value
+        ];
+      },
+    }).then(res => {
+      setPlayers({
+        player1: { name: res.value[0], symbol: "X", points: 0 },
+        player2: { name: res.value[1], symbol: "O", points: 0 }
+      });
+    });
 }
