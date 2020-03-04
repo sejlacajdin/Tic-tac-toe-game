@@ -26,13 +26,19 @@ export default function Game() {
       html:
         '<input id="swal-input1" class="swal2-input">' +
         '<input id="swal-input2" class="swal2-input">',
+      allowOutsideClick:false,
       focusConfirm: false,
       preConfirm: () => {
+        let player_1 = Swal.getPopup().querySelector('#swal-input1').value;
+        let player_2 = Swal.getPopup().querySelector('#swal-input2').value;
+        if (player_1 === '' || player_2 === '') {
+          Swal.showValidationMessage(`Player names are missing!`)
+        }
         return [
           document.getElementById("swal-input1").value,
           document.getElementById("swal-input2").value
         ];
-      }
+      },
     }).then(res => {
       setPlayers({
         player1: { name: res.value[0], symbol: "X", points: 0 },
@@ -147,7 +153,7 @@ function isBoardFull(squares) {
 }
 
 function getResult(players, winner) {
-  if (players.player1.simbol == winner) {
+  if (players.player1.symbol === winner) {
     players.player1.points += 1;
   } else {
     players.player2.points += 1;
