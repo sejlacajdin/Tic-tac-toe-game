@@ -32,6 +32,7 @@ body {
 .leaderBoard,
 .gameContent {
   width: fit-content;
+  text-align: center;
 }
 
 .gameRow {
@@ -68,24 +69,31 @@ body {
   font-family: "Titillium Web";
 }
 
-.reset__button, .reload__button {
-  margin-top: 15px;
-  background: white;
-  outline: none;
-  background: #333;
-  color: white;
+.button,
+.swal2-confirm.swal2-styled {
+  margin-top: 15px !important;
+  outline: none !important;
+  background: #333 !important;
+  color: white !important;
   border: 0;
   padding: 10px 20px;
-  width: 100%;
+  width: 55%;
   cursor: pointer;
   border-radius: 5px;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
 }
-
+.swal2-confirm.swal2-styled {
+  width: 40%;
+}
 /******Lider board********/
 
 .leaderBoard {
   margin-left: 40px;
   font-family: "Titillium Web";
+  width: 220px;
 }
 
 .leaderboard__heading {
@@ -95,7 +103,7 @@ body {
   color: white;
   border: 0;
   padding: 10px 45px;
-  width: 100px;
+  width: 130px;
   border-radius: 5px;
 }
 
@@ -113,4 +121,7 @@ td {
   padding: 5px;
   font-family: "Titillium Web";
   text-align: center;
+}
+button.button svg {
+  margin-right: 5px;
 }
