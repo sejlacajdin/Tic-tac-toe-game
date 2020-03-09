@@ -202,7 +202,7 @@ function showPopUpWindow(setPlayers) {
       ];
     }
   }).then(res => {
-    if(res.value!=undefined){
+    if (res.value != undefined) {
       setPlayers({
         player1: { name: res.value[0], symbol: "X", points: 0 },
         player2: { name: res.value[1], symbol: "O", points: 0 }
@@ -219,7 +219,7 @@ window.addEventListener(
         event = event || window.event || {};
         if (event.keyCode === 27 || event.keyCode === 116) {
           event.preventDefault();
-          console.log('...');
+          console.log("...");
           return false;
         } else if (
           event.keyCode === 13 &&

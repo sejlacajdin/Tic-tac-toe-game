@@ -125,7 +125,7 @@ td {
 button.button svg {
   margin-right: 5px;
 }
-.swal2-validation-message{
+.swal2-validation-message {
   font-family: "Titillium Web";
-  font-weight: 600!important;
+  font-weight: 600 !important;
 }
