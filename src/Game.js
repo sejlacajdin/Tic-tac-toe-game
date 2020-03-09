@@ -202,10 +202,12 @@ function showPopUpWindow(setPlayers) {
       ];
     }
   }).then(res => {
-    setPlayers({
-      player1: { name: res.value[0], symbol: "X", points: 0 },
-      player2: { name: res.value[1], symbol: "O", points: 0 }
-    });
+    if(res.value!=undefined){
+      setPlayers({
+        player1: { name: res.value[0], symbol: "X", points: 0 },
+        player2: { name: res.value[1], symbol: "O", points: 0 }
+      });
+    }
   });
 }
 window.addEventListener(
@@ -214,9 +216,10 @@ window.addEventListener(
     window.addEventListener(
       "keydown",
       function(event) {
-        if (event.keyCode == 116) {
+        event = event || window.event || {};
+        if (event.keyCode === 27 || event.keyCode === 116) {
           event.preventDefault();
-
+          console.log('...');
           return false;
         } else if (
           event.keyCode === 13 &&
