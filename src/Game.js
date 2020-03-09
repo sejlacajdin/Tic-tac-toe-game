@@ -118,7 +118,7 @@ export default function Game() {
   }
   return (
     <div className="game">
-      <h1>Game</h1>
+      <h1>Tic Tac Toe</h1>
       <div className="gameContent">
         <div className="gameBoard">
           <div className="gameRow">
