@@ -186,8 +186,8 @@ function showPopUpWindow(setPlayers) {
   Swal.fire({
     title: "Insert player names",
     html:
-      `<input id="swal-input1" class="swal2-input" placehodler="Enter a name of first player">` +
-      '<input id="swal-input2" class="swal2-input" placehodler="Enter a name of second player">',
+      `<input id="swal-input1" class="swal2-input" placeholder="Enter a name of first player">` +
+      '<input id="swal-input2" class="swal2-input" placeholder="Enter a name of second player">',
     allowOutsideClick: false,
     focusConfirm: false,
     preConfirm: () => {
